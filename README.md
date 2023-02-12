@@ -9,5 +9,5 @@ Including an example of an appropriate write-up response
 
 ## Lesson 2 - Intro to linear models
 ### 12/02/2023
-I created the script (intro_to_linear_models) where data was analysed
+I created the script (intro_to_linear_models) where data was analysed  
 I used means, confidence intervals, equal variance, outliers and with more standard deviation and normal distribution checking to analyse the data
