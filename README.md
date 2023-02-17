@@ -11,3 +11,11 @@ Including an example of an appropriate write-up response
 ### 12/02/2023
 I created the script (intro_to_linear_models) where data was analysed  
 I used means, confidence intervals, equal variance, outliers and with more standard deviation and normal distribution checking to analyse the data
+
+## Lesson 3 - Testing and Power analysis
+### 17/02/2023
+
+I created the script (testing) where data was put through a Student's T-test and a Paired T-test.  
+I learnt about effect sizes, error types 1 and 2 and experimental power and the value of repeatability, as well as how to tell R to find all experiments which are statistically different and how to compare estimates and confidence intervals within experiments.
+I learnt about power analysis which tells us the probability of making a type 2 error and Cohen's D which tells us the effect size.
+
