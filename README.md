@@ -19,3 +19,8 @@ I created the script (testing) where data was put through a Student's T-test and
 I learnt about effect sizes, error types 1 and 2 and experimental power and the value of repeatability, as well as how to tell R to find all experiments which are statistically different and how to compare estimates and confidence intervals within experiments.  
 I learnt about power analysis which tells us the probability of making a type 2 error and Cohen's D which tells us the effect size.
 
+## Lesson 4 - Regression
+### 24/02/2023
+
+I created the script (regression) where janka (wood) data was put through a Pearson's R test and regression analysis where a means centered regression was looked at.  
+I learnt about resisual variance plots and how to identify and place outliers in R and how to plot predicted values on a graph.
