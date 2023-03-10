@@ -1,4 +1,6 @@
 
+#Set up ----
+
 library(tidyverse)
 library(GGally)
 library(emmeans)
@@ -11,21 +13,21 @@ library(broom.helpers)
 #read data
 darwin <- read_csv("data/darwin.csv")
 
-#_______________________________________________________________
+#_______________________________________________________________----
 
-#linear model function lm()
+#linear model function lm() ----
 lsmodel0 <- lm(formula = height ~ 1, data = darwin)
 
-#________________________________________________________________
+#________________________________________________________________----
 
-#model summary
+#model summary----
 summary(lsmodel0)
 
 mean(darwin$height)
 
-#________________________________________________________________
+#________________________________________________________________----
 
-#compare means 
+#compare means ----
 lsmodel1 <- lm(height ~ type, data=darwin)
 # note that the following is identical
 # lsmodel1 <- lm(height ~ 1 + type, data=darwin)
@@ -36,7 +38,7 @@ darwin %>%
   group_by(type) %>% 
   summarise(mean=mean(height))
 
-#put means in a plot
+##put means in a plot ----
 darwin %>% 
   ggplot(aes(x=type, 
              y=height,
@@ -49,14 +51,14 @@ darwin %>%
 #also provides standard error but it's pooled between the two types 
 #and not individual
 
-#________________________________________________________________
+#________________________________________________________________----
 
-#condidence intervals
+#condidence intervals----
 confint(lsmodel1)
 
-#________________________________________________________________
+#________________________________________________________________----
 
-#Answering the question
+#Answering the question----
 
 #graph of the estimated mean difference with an approx 95% CI. 
 #As we can see we are able to reject the null hypothesis at a 
@@ -67,21 +69,21 @@ GGally::ggcoef_model(lsmodel1,
 
 broom::tidy(lsmodel1, conf.int=T, conf.level=0.99)
 
-#_________________________________________________________________
+#_________________________________________________________________----
 
-#Getting the other treatment mean and standard error
+#Getting the other treatment mean and standard error----
 darwin %>% 
   mutate(type=factor(type)) %>% 
   mutate(type=fct_relevel(type, c("Self", "Cross"))) %>% 
   lm(height~type, data=.) %>% 
   broom::tidy()
 
-#emmeans
+#emmeans----
 means <- emmeans::emmeans(lsmodel1, specs = ~ type)
 
 means
 
-#plot for means
+#plot for means----
 means %>% 
   as_tibble() %>% 
   ggplot(aes(x=type, 
@@ -90,21 +92,21 @@ means %>%
     ymin=lower.CL, 
     ymax=upper.CL))
 
-#__________________________________________________________________
+#__________________________________________________________________----
 
-#assumption checking
+#assumption checking----
 performance::check_model(lsmodel1)
 #or
 plot(lsmodel1)
 
-#normal distribution
+#normal distribution----
 performance::check_model(lsmodel1, check=c("normality","qq"))
 #or
 plot(lsmodel1, which=c(2,2))
 
-#_________________________________________________________________
+#_________________________________________________________________----
 
-# QQ plots
+# QQ plots----
 #A QQ plot is a classic way of checking whether a sample 
 #distribution is the same as another (or theoretical distribution).
 #The qqplot distributes your data on the y-axis, and a theoretical 
@@ -112,9 +114,9 @@ plot(lsmodel1, which=c(2,2))
 #normal distribution, they should meet to produce a perfect 
 #diagonal line across the plot.
 
-#__________________________________________________________________
+#__________________________________________________________________----
 
-#Equal variance
+#Equal variance----
 performance::check_model(lsmodel1, check="homogeneity")
 #or
 plot(lsmodel1, which=c(1,3))
@@ -125,21 +127,21 @@ plot(lsmodel1, which=c(1,3))
 #In reality, there will always be residual error, but as long as it
 #is evenly distributed between treatments this is ok.
 
-#__________________________________________________________________
+#__________________________________________________________________----
 
-#Outliers
+#Outliers----
 performance::check_model(lsmodel1, check="outliers")
 #or
 plot(lsmodel1, which=c(4,4))
 
-#Cook's distance. 
+#Cook's distance ----
 #This is a measure of how much 'leverage' a single data point is
 #exerting on the model, if it is too high, it may be having an
 #outsized effect on the estimates.
 
 #__________________________________________________________________
 
-#Summary plot
+#Summary plot ----
 darwin %>% 
   ggplot(aes(x=type, 
              y=height))+

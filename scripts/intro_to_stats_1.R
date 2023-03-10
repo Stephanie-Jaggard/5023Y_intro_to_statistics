@@ -1,4 +1,4 @@
-
+#Set up ----
 
 library(tidyverse)
 library(here)
@@ -6,32 +6,34 @@ library(kableExtra)
 
 darwin <- read_csv(here("data", "darwin.csv"))
 
-##_______________________________________________________________________________
-# check the structure of the data
+##_______________________________________________________________________________----
+#Check data ----
+
+##check the structure of the data----
 glimpse(darwin)
 
-# check data is in a tidy format
+## check data is in a tidy format----
 head(darwin)
 
-# check variable names
+## check variable names----
 colnames(darwin)
 
 
-# clean up column names
+## clean up column names----
 
 darwin <- janitor::clean_names(darwin)
 
-# check for duplication
+## check for duplication----
 darwin %>% 
   duplicated() %>% 
   sum()
 
-# check for typos - by looking at impossible values
+## check for typos - by looking at impossible values ----
 darwin %>% 
   summarise(min=min(height, na.rm=TRUE), 
             max=max(height, na.rm=TRUE))
 
-# check for typos by looking at distinct characters/values
+## check for typos by looking at distinct characters/values----
 
 darwin %>% 
   distinct(pair)
@@ -39,77 +41,77 @@ darwin %>%
 darwin %>% 
   distinct(type)
 
-# missing values
+## missing values----
 darwin %>% 
   is.na() %>% 
   sum()
 
-# quick summary
+## quick summary----
 
 summary(darwin)
 
-##________________________________________________________________________________
+##________________________________________________________________________________----
 
-#data visualisation
+#data visualisation----
 
-#scatter point
+##scatter point----
 darwin %>% 
   ggplot(aes(x=type,
              y=height))+
   geom_point()
 
-#boxplot
+##boxplot----
 darwin %>% 
   ggplot(aes(x=type,
              y=height))+
   geom_boxplot()
 
-#violin plot
+##violin plot----
 darwin %>% 
   ggplot(aes(x=type,
              y=height))+
   geom_violin()
 
-#histogram
+##histogram----
 darwin %>% 
   ggplot(aes(x=type,
              y=height))+
   geom_histogram()
 #Not supposed to work
 
-##_________________________________________________________________________________
+##_________________________________________________________________________________----
 
-#comparing groups
+#comparing groups----
 
-#plain tibble
+##plain tibble----
 darwin %>% 
   group_by(type) %>% 
   summarise(mean=mean(height),
             sd=sd(height))
 
-# make a new object
+## make a new object----
 darwin_summary <-darwin %>% 
   group_by(type) %>% 
   summarise(mean=mean(height),
             sd=sd(height))
 
-# make a summary plot
+## make a summary plot----
 darwin_summary %>% 
   ggplot(aes(x=type,
              y=mean))+
   geom_pointrange(aes(ymin=mean-sd, ymax=mean+sd))+
   theme_bw()
 
-# use kable extra functions to make a nice table (could be replaced with kable() if needed)
+## use kable extra functions to make a nice table (could be replaced with kable() if needed)----
 darwin_summary %>% 
   kbl(caption="Summary statistics of crossed and selfed maize plants") %>% 
   kable_styling(bootstrap_options = "striped", full_width = T, position = "left")
 
-##___________________________________________________________________________________________
+##___________________________________________________________________________________________----
 
-#Differences
+#Differences----
 
-# pivot data to wide format then subtract Selfed plant heights from Crossed plant heights
+## pivot data to wide format then subtract Selfed plant heights from Crossed plant heights----
 
 darwin_wide <- darwin %>% 
   pivot_wider(names_from = type, values_from = height) %>% 
@@ -122,35 +124,35 @@ difference_summary <- darwin_wide %>%
 
 difference_summary #tibble with mean, sd and n
 
-#calculate standard error
+## calculate standard error----
 
 difference_summary %>% 
   mutate(se= sd/sqrt(n))
 
-##_________________________________________________________________________________________
+##_________________________________________________________________________________________----
 
-#Communication
+#Communication----
 
 #... the average difference in height was 2.62 ± 1.22 inches (mean ± SE).
 
-##_____________________________________________________________________________________
+##_____________________________________________________________________________________----
 
-#Uncertainty
+#Uncertainty----
 
-#normal distribution
+##normal distribution----
 #Create a sequence of 100 equally spaced numbers between -4 and 4
 x <- seq(-4, 4, length=100)
 
-#create a vector of values that shows the height of the probability distribution
+##create a vector of values that shows the height of the probability distribution----
 #for each value in x
 y <- dnorm(x)
 
-#plot x and y as a scatterplot with connected lines (type = "l") and add
+##plot x and y as a scatterplot with connected lines (type = "l") and add ----
 #an x-axis with custom labels
 plot(x,y, type = "l", lwd = 2, axes = FALSE, xlab = "", ylab = "")
 axis(1, at = -3:3, labels = c("-3s", "-2s", "-1s", "mean", "1s", "2s", "3s"))
 
-#confidence intervals (CI)
+##confidence intervals (CI)----
 lowerCI <- 2.62-(2*1.22)
 
 upperCI <- 2.62+(2*1.22)
@@ -158,13 +160,13 @@ upperCI <- 2.62+(2*1.22)
 lowerCI
 upperCI
 
-##______________________________________________________________________________________________________
+##______________________________________________________________________________________________________----
 
-#write up example
+#write up example----
 #The maize plants that have been cross pollinated were taller on average than the 
 #self-pollinated plants, with a mean difference in height of 2.62 [0.18, 5.06] inches (mean [95% CI])
 
-##________________________________________________________________________________________________________
+##________________________________________________________________________________________________________----
 
 
 
