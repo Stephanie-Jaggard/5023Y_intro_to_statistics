@@ -25,7 +25,7 @@ I learnt about power analysis which tells us the probability of making a type 2 
 I created the script (regression) where janka (wood) data was put through a Pearson's R test and regression analysis where a means centered regression was looked at.  
 I learnt about resisual variance plots and how to identify and place outliers in R and how to plot predicted values on a graph.  
   
-##Lesson 5 - ANOVA
+## Lesson 5 - ANOVA
 ### 10/03/2023
 
 I created the script (ANOVA) where Darwin data was put through an ANOVA and F-test which analyses the difference between groups and the F-test accounts for sample size as well.  
