@@ -30,3 +30,11 @@ I learnt about resisual variance plots and how to identify and place outliers in
 
 I created the script (ANOVA) where Darwin data was put through an ANOVA and F-test which analyses the difference between groups and the F-test accounts for sample size as well.  
 The activity used frog data to see how hatching is affected by temperature and ANOVA was used on the data.
+
+## Lesson 6 - Mutlivariate liner models
+### 17/03/2023
+
+I created the script (multivariate_linear_models) where biomass data was put through a one-way ANOVA and a factorial linear model where the latter allows us to compare additive and interaction effects.  
+I learnt that it's important to order predictors for unbalanced datasets as ANOVA calculates sequentially based off what order we give it.  
+I also learnt about how to do a pairwise comparison to compare the data as part of its pair.  
+The activity used pollution data and put it through a continuous linear model to create a simple model for continuous data.
