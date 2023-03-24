@@ -37,4 +37,12 @@ The activity used frog data to see how hatching is affected by temperature and A
 I created the script (multivariate_linear_models) where biomass data was put through a one-way ANOVA and a factorial linear model where the latter allows us to compare additive and interaction effects.  
 I learnt that it's important to order predictors for unbalanced datasets as ANOVA calculates sequentially based off what order we give it.  
 I also learnt about how to do a pairwise comparison to compare the data as part of its pair.  
-The activity used pollution data and put it through a continuous linear model to create a simple model for continuous data.
+The activity used pollution data and put it through a continuous linear model to create a simple model for continuous data.  
+
+## Lesson 7 - Complex models
+### 24/03/2023
+
+I created the script (complex_models) where fruitfly data was displayed in plots to visual differences to test a hypothesis on how sleep and size affects longevity.   
+I looked at designing models but I didn't understand this, so I need to ask about it further.  
+I learnt how to check the co-linearity of models and how to transform data to better fit a model (or not), including BoxCox as well as going over simplifying models.  
+Finally, I looked at using the emmeans function for post hoc comparisons of the data, including pairwise comparisons, and have an example of how a write up for statistics work would look like.
