@@ -47,7 +47,7 @@ I looked at designing models but I didn't understand this, so I need to ask abou
 I learnt how to check the co-linearity of models and how to transform data to better fit a model (or not), including BoxCox as well as going over simplifying models.  
 Finally, I looked at using the emmeans function for post hoc comparisons of the data, including pairwise comparisons, and have an example of how a write up for statistics work would look like.
 
-##Lesson 8 - Generalised linear models
+## Lesson 8 - Generalised linear models
 ### 2/04/2023
 
 I created the script (generalised_linear_models) where fruitfly data was compared with a generalised linear model with a gaussian error distribution but I couldn't continue further because there is no data for cuckoo or challenger data.  
